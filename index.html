@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-6 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-6 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="btnMinus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input type="text" id="phoneNumber" class="form-control text-center" value="1">
+                           <button id="phonePluse" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5>$<span id="iphoneBlackPrice">1219</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                        <span id="iphoneBlackPricehiden" style="display: none;">1219</span>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-6 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-6 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="caseMinus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="caseNumber" type="text" class="form-control text-center" value="1">
+                           <button id="casePluse" class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5>$<span id="casePrice">59</span></h5>
+                        <span id="casePriceHideen" style="display: none;">59</span>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$<span id="subtotal">0</span></h5>
+                        <h5>$0</h5>
+                        <h5>$1,278</h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <script>
+
+      // iPhone number pluse button event handler
+      count = 1;
+      const btnPluse = document.getElementById("phonePluse");
+      btnPluse.addEventListener("click", function(){
+         const phoneNumber = document.getElementById("phoneNumber").value = ++count;
+
+         // const iphoneBlackPriceMoblie = document.getElementById("iphoneBlackPrice").innerText;
+         // const blackPriceMoblie = parseFloat(iphoneBlackPriceMoblie);
+
+         const blackPriceMoblie =  price("iphoneBlackPrice");
+
+         const BlackPrice = price("iphoneBlackPricehiden");
+
+         iphonemobileBlackPrice =BlackPrice + blackPriceMoblie;
+
+         //const subtotal =  updatespanText("iphoneBlackPrice",iphonemobileBlackPrice);
+
+         document.getElementById("iphoneBlackPrice").innerText = iphonemobileBlackPrice;
+      })
+
+      // iPhone number minus button event handler
+      const btnMinus= document.getElementById("btnMinus");
+
+      btnMinus.addEventListener("click", function(){
+         const phoneNumber = document.getElementById("phoneNumber").value = --count;
+
+         const blackPrice = price("iphoneBlackPrice");
+         const hiddenPriceBlck = price("iphoneBlackPricehiden");
+
+         iphonemobileBlackPrice = blackPrice -  hiddenPriceBlck;
+         document.getElementById("iphoneBlackPrice").innerText = iphonemobileBlackPrice;
+      })
+
+
+      // iPhone case number pluse button event handler
+      i = 1;
+      const casePluse = document.getElementById("casePluse");
+      casePluse.addEventListener("click", function(){
+         const caseNumber = document.getElementById("caseNumber").value = ++i;
+
+         // const iphoneBlackPriceMoblie = document.getElementById("iphoneBlackPrice").innerText;
+         // const blackPriceMoblie = parseFloat(iphoneBlackPriceMoblie);
+
+         const casePrice =  price("casePrice");
+         const casePriceHideen = price("casePriceHideen");
+      
+         caseTotalprice = casePriceHideen + casePrice;
+         document.getElementById("casePrice").innerText = caseTotalprice;
+
+         const subtotal = document.getElementById("subtotal").innerText;
+         
+      })
+
+
+      // case number minus button event handler
+      const caseMinus= document.getElementById("caseMinus");
+
+      caseMinus.addEventListener("click", function(){
+         const phoneNumber = document.getElementById("caseNumber").value = --i;
+
+         const casePrice = price("casePrice");
+         const casePriceHideen = price("casePriceHideen");
+
+         totalMinusCasePrice = casePrice -  casePriceHideen;
+         document.getElementById("casePrice").innerText = totalMinusCasePrice;
+      })
+
+
+       function price(id){
+         const amount = document.getElementById(id).innerText;
+         const price = parseFloat(amount);
+         return price;
+      }
+
+
+
+   </script>  
+</body>
+
+</html>
